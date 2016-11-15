@@ -11,6 +11,17 @@
   * Fast Fourier Transform
 * an activity label showing the activity that generated the feature set
 
+### Running the Script
+* requires that the following data sets are read in from your working directory:
+ * X_train
+ * y_train
+ * X_test
+ * y_test
+ * subject_train
+ * subject_test
+ * activity_labels
+* script should run from that point on 
+
 ### First Tidy Data Set
 * Merged both train and test sets
 * Limited the data to only mean and standard deviation measurements, per the assignment's instructions

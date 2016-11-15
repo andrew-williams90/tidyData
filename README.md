@@ -1,2 +1,3 @@
-# tidyData
-getting and cleaning data course final project
+### tidyData
+# Getting and Cleaning Data Course Final Project
+

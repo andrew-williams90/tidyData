@@ -1,37 +1,44 @@
-install.packages('tidyverse')
-library(tidyverse)
-
 ### read in raw data ###
 
 ### train data
 subject_train = data.table::fread(input = '~/Downloads/UCI HAR Dataset/train/subject_train.txt')
-colnames(subject_train) = 'subject'
-subject_train$subject = as.factor(subject_train$subject)
 
 X_train = data.table::fread('~/Downloads/UCI HAR Dataset/train/X_train.txt')
-# features = readr::read_lines('~/Downloads/UCI HAR Dataset/features.txt')
 featuresDF = data.table::fread('~/Downloads/UCI HAR Dataset/features.txt')
-features = featuresDF$V2
-colnames(X_train) = features
 
 y_train = data.table::fread('~/Downloads/UCI HAR Dataset/train/y_train.txt')
-colnames(y_train) = 'activityId'
+
 
 ### test data
 subject_test = data.table::fread(input = '~/Downloads/UCI HAR Dataset/test/subject_test.txt')
+
+X_test = data.table::fread('~/Downloads/UCI HAR Dataset/test/X_test.txt')
+featuresDF = data.table::fread('~/Downloads/UCI HAR Dataset/features.txt')
+
+y_test = data.table::fread('~/Downloads/UCI HAR Dataset/test/y_test.txt')
+
+
+activityLabels = data.table::fread('~/Downloads/UCI HAR Dataset/activity_labels.txt')
+
+### load packages
+install.packages('tidyverse')
+library(tidyverse)
+
+### some data cleaning
+colnames(subject_train) = 'subject'
+subject_train$subject = as.factor(subject_train$subject)
+
+features = featuresDF$V2
+colnames(X_train) = features
+colnames(X_test) = features
+
+colnames(y_train) = 'activityId'
+
 colnames(subject_test) = 'subject'
 subject_test$subject = as.factor(subject_test$subject)
 
-X_test = data.table::fread('~/Downloads/UCI HAR Dataset/test/X_test.txt')
-# features = readr::read_lines('~/Downloads/UCI HAR Dataset/features.txt')
-featuresDF = data.table::fread('~/Downloads/UCI HAR Dataset/features.txt')
-features = featuresDF$V2
-colnames(X_test) = features
-
-y_test = data.table::fread('~/Downloads/UCI HAR Dataset/test/y_test.txt')
 colnames(y_test) = 'activityId'
 
-activityLabels = data.table::fread('~/Downloads/UCI HAR Dataset/activity_labels.txt')
 colnames(activityLabels) = c('activityId', 'activityLabel')
 
 ### merge train and test data
